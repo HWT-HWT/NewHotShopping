@@ -4,10 +4,9 @@
       <div class="image">
       </div>
       <div class="occupy">
-
       </div>
       <div class="text">
-        <a href="">进入网站首页>></a>
+        <a href="">进入网站首页</a>
       </div>
     </div>
 
@@ -15,10 +14,10 @@
       <div class="login">
         <div class="title">账户登录</div>
         <div class="input">
-            账号：<el-input v-model="ruleForm.name" style="width: 300px;"></el-input>
+            账号：<el-input  placeholder="请输入账号" v-model="ruleForm.name" style="width: 300px;"></el-input>
         </div>
         <div class="input">
-            密码：<el-input v-model="ruleForm.name" style="width: 300px;"></el-input>
+            密码：<el-input placeholder="请输入密码" style="width: 300px;" v-model="ruleForm.password" show-password></el-input>
         </div>
         <div class="checkbox">
           <el-checkbox > 我已同意隐私条款和服务条款 </el-checkbox>
@@ -31,11 +30,8 @@
 
     <div class="footer">
       <span>关于我们</span> | <span>帮助中心</span> | <span>售后服务</span>
-      <br>
-      <br>
       <span>CopRight@小兔鲜</span>
     </div>
-
   </div>
 </template>
 
@@ -44,7 +40,8 @@ export default {
   data () {
     return {
       ruleForm: {
-        name: ''
+        name: '',
+        password: ''
       }
     }
   }
