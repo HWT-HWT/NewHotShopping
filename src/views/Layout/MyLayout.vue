@@ -37,9 +37,11 @@
       </div>
     </div>
     </div>
+
     <div class="assembly">
 
     </div>
+
     <div class="footer">
 
           <div class="footerone">
@@ -161,7 +163,7 @@ export default {
 
 <style lang="scss" scoped>
 #MyLayout{
-
+  background: #ccc;
   .header{
     .top{
   width: 100%;
@@ -170,14 +172,15 @@ export default {
   background: #333333;
   text-align: center;
   ui{
-    width: 50%;
+    width: 51%;
     text-align: right;
     display: inline-block;
     margin: 0 auto;
     line-height: 50px;
     li{
       display: inline-block;
-      margin-left: 10px;
+      // margin-left: 10px;
+      width: 6%;
       a{
         color: #cdcdcd;
       }
@@ -187,6 +190,7 @@ export default {
 .nav{
   width: 100%;
   height: 150px;
+  background: white;
   line-height: 200px;
   .centen{
     width: 53%;
@@ -249,11 +253,15 @@ export default {
   }
   .footer{
     width: 100%;
+    background: white;
     .footerone{
       width: 50%;
       height: 250px;
       display: flex;
       margin: 0 auto;
+      // border: 1px solid ;
+      padding: 0 50px;
+
    }
    .footertow{
       width: 100%;
@@ -299,7 +307,7 @@ export default {
           align-content: center;
           justify-content: center;
           li{
-            padding: 5px;
+            width:8%;
             display: inline-block;
             border-right: 1px solid  #ccc;;
             font-size: 15px;
@@ -308,6 +316,9 @@ export default {
             }
           }
         }
+        p{
+            margin-top: 20px;
+          }
         }
       }
    }

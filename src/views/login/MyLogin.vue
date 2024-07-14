@@ -68,7 +68,6 @@ export default {
         flex: 0.5;
       }
       .text{
-
         margin-right: 100px;
         a{
           font-size: 0.7vmax;
@@ -76,18 +75,18 @@ export default {
       }
     }
     .centen{
-      width: 110%;
-      height: 400px;
+      height: 700px;
       margin-left: -10px;
       background: url('../../assets/images/login-bg.png') no-repeat center 5px /cover;
+      background-size: cover;
       position: relative;
       text-align: center;
       .login{
         width: 400px;
-        height: 75%;
+        height: 45%;
         position: absolute;
-        top: 50px;
-        left: 50%;
+        top: 200px;
+        left: 60%;
         background: white;
         .title{
           width: 100%;
@@ -98,7 +97,6 @@ export default {
         .input{
           width: 100%;
           margin: 20px 0;
-
         }
         .button{
           margin: 10px auto;
@@ -108,10 +106,10 @@ export default {
     .footer{
       width: 70%;
       height: 200px;
-      // border: 1px solid black;
       color: #ccc;
       text-align: center;
       align-content: center;
+      margin: 0 auto;
     }
   }
 </style>

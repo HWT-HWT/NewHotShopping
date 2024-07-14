@@ -20,13 +20,11 @@ export default {
 .footerTitle{
   width: 100%;
   text-align: center;
-  margin-right:60px ;
-  margin-top: 30px;
+  padding: 20px;
   .conten{
-    margin-top:10px ;
     width: 100%;
     height: 60%;
-    // line-height: 100px;
+    margin: 20px auto;
     .ioce{
       width: 100%;
       height: 100%;
@@ -36,7 +34,7 @@ export default {
       .i{
         align-content: center;
         width: 100%;
-        height: 80%;
+        height: 100%;
         border: 1px solid black;
         margin-left: 10px;
       }
