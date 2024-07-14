@@ -6,7 +6,7 @@
       <div class="occupy">
       </div>
       <div class="text">
-        <a href="">进入网站首页</a>
+        <a href="">进入网站首页>></a>
       </div>
     </div>
 
@@ -30,6 +30,8 @@
 
     <div class="footer">
       <span>关于我们</span> | <span>帮助中心</span> | <span>售后服务</span>
+      <br>
+      <br>
       <span>CopRight@小兔鲜</span>
     </div>
   </div>
@@ -50,8 +52,6 @@ export default {
 
 <style lang="scss" scoped>
   #login{
-    margin: 0;
-    padding: 0;
     .title{
       width: 100%;
       height: 150px;
@@ -60,7 +60,7 @@ export default {
       justify-content: center;
       .image{
         background: url('../../assets/images/logo.png') no-repeat center 18px / contain;
-        width: 200px;
+        width: 8%;
         height: 120px;
         margin-left: 100px;
       }
@@ -68,10 +68,10 @@ export default {
         flex: 0.5;
       }
       .text{
+
         margin-right: 100px;
         a{
-          color: black;
-          text-decoration: none;
+          font-size: 0.7vmax;
         }
       }
     }
@@ -84,7 +84,7 @@ export default {
       text-align: center;
       .login{
         width: 400px;
-        height: 300px;
+        height: 75%;
         position: absolute;
         top: 50px;
         left: 50%;
@@ -106,7 +106,7 @@ export default {
       }
     }
     .footer{
-      width: 100%;
+      width: 70%;
       height: 200px;
       // border: 1px solid black;
       color: #ccc;
