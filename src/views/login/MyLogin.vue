@@ -6,26 +6,25 @@
       <div class="occupy">
       </div>
       <div class="text">
-        <a href="">进入网站首页>></a>
+        <el-button type="text" style="color: black;">进入网站首页</el-button>
       </div>
     </div>
 
     <div class="centen">
-      <div class="login">
-        <div class="title">账户登录</div>
-        <div class="input">
-            账号：<el-input  placeholder="请输入账号" v-model="ruleForm.name" style="width: 300px;"></el-input>
-        </div>
-        <div class="input">
-            密码：<el-input placeholder="请输入密码" style="width: 300px;" v-model="ruleForm.password" show-password></el-input>
-        </div>
-        <div class="checkbox">
-          <el-checkbox > 我已同意隐私条款和服务条款 </el-checkbox>
-        </div>
-        <div class="button" >
-          <el-button style="width: 200px;" type="primary">登录</el-button>
-        </div>
-      </div>
+
+      <el-form :model="form" label-width="80px">
+        <p>账户登录</p>
+        <el-form-item label="用户名">
+          <el-input v-model="form.username"></el-input>
+        </el-form-item>
+        <el-form-item label="密码">
+          <el-input type="password" v-model="form.password"></el-input>
+        </el-form-item>
+        <el-checkbox>我已同意隐私条款和服务条款</el-checkbox>
+        <el-form-item>
+          <el-button type="primary">登录</el-button>
+        </el-form-item>
+      </el-form>
     </div>
 
     <div class="footer">
@@ -41,8 +40,8 @@
 export default {
   data () {
     return {
-      ruleForm: {
-        name: '',
+      form: {
+        username: '',
         password: ''
       }
     }
@@ -80,26 +79,25 @@ export default {
       background: url('../../assets/images/login-bg.png') no-repeat center 5px /cover;
       background-size: cover;
       position: relative;
-      text-align: center;
-      .login{
-        width: 400px;
-        height: 45%;
-        position: absolute;
-        top: 200px;
-        left: 60%;
+      display: flex;
+      .el-form{
+        text-align: center;
+        width: 15%;
+        padding: 30px;
         background: white;
-        .title{
-          width: 100%;
-          height: 20%;
-          border-bottom: 1px solid #ccc;
-          font-size: 18px;
-        }
-        .input{
-          width: 100%;
-          margin: 20px 0;
-        }
-        .button{
-          margin: 10px auto;
+        position: absolute;
+        top: 100px;
+        right: 800px;
+        margin: 0 auto;
+        .el-form-item{
+          margin: 20px auto;
+          justify-content: center;
+          align-content: center;
+          text-align: left;
+          .el-button--primary{
+            width: 50%;
+            margin-left:35px ;
+          }
         }
       }
     }

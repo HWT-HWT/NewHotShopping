@@ -2,27 +2,19 @@
   <div id="MyLayout">
     <div class="header">
       <div class="top">
-      <ui>
+      <ul>
         <li><a href="">请先登录</a></li>
         <li><a href="">帮助中心</a></li>
         <li><a href="">关于我们</a></li>
-      </ui>
+      </ul>
     </div>
     <div class="nav">
       <div class="centen">
         <div class="image"></div>
         <div class="titleNav">
           <ul>
-            <li><a href="">首页</a></li>
-            <li><a href="">首页</a></li>
-            <li><a href="">首页</a></li>
-            <li><a href="">首页</a></li>
-            <li><a href="">首页</a></li>
-            <li><a href="">首页</a></li>
-            <li><a href="">首页</a></li>
-            <li><a href="">首页</a></li>
-            <li><a href="">首页</a></li>
-            <li><a href="">首页</a></li>
+            <li v-for="item in 10" :key="item"><a href=""><router-link to="/home">首页</router-link></a></li>
+
           </ul>
         </div>
         <div class="search">
@@ -39,7 +31,7 @@
     </div>
 
     <div class="assembly">
-
+      <router-view></router-view>
     </div>
 
     <div class="footer">
@@ -171,7 +163,7 @@ export default {
   border: 1px solid #333333;
   background: #333333;
   text-align: center;
-  ui{
+  ul{
     width: 51%;
     text-align: right;
     display: inline-block;
