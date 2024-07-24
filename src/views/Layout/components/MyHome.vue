@@ -4,7 +4,7 @@
       <div class="block">
         <el-carousel height="500px" >
           <el-carousel-item v-for="item in bannerList" :key="item.id">
-            <img style="width: 100%;" class="small" :src="item.imgUrl" alt="">
+            <img style="width: 100%; " class="small" :src="item.imgUrl" alt="">
           </el-carousel-item>
         </el-carousel>
       </div>
@@ -19,12 +19,15 @@
         人气推荐 品质靠谱
       </template>
       <template #commodity>
-        <commodity>
+        <commodity v-for="item in homeList" :key="item.id">
+          <template #image>
+            <img style="width: 100%; height: 100%;" :src="item.picture" alt="">
+          </template>
           <template #title>
-            特惠推荐
+            {{ item.title }}
           </template>
           <template #text>
-            他们最实惠
+            {{ item.alt }}
           </template>
         </commodity>
       </template>
@@ -38,16 +41,42 @@
         新鲜出炉 品质靠谱
       </template>
       <template #commodity>
-        <commodity>
-          <template #title>
-            电动车头盔电动车头盔电动车头盔电动车头盔动车头盔电动车头盔电动车头盔
+        <commodity  v-for="item in NewList" :key="item.id">
+          <template #image>
+            <img style="width: 100%; height: 100%;" :src="item.picture" alt="">
           </template>
-          <template #text>
-            ￥35.00
+          <template #title>
+            {{item.desc}}
+          </template>
+          <template #text >
+            <p style="color: red;">{{'￥'+item.price}}</p>
           </template>
         </commodity>
       </template>
     </homeList>
+
+    <homeList>
+      <template #title>
+        新鲜好物
+      </template>
+      <template #text>
+        新鲜出炉 品质靠谱
+      </template>
+      <template #commodity>
+        <commodity  v-for="item in BrandList" :key="item.id">
+          <template #image>
+            <img style="width: 100%; height: 100%;" :src="item.picture" alt="">
+          </template>
+          <template #title>
+            {{item.desc}}
+          </template>
+          <template #text >
+            <p style="color: red;">{{'￥'+item.price}}</p>
+          </template>
+        </commodity>
+      </template>
+    </homeList>
+
   </div>
 </template>
 
@@ -55,13 +84,15 @@
 import BannerMask from '@/components/banner-Mask.vue'
 import homeList from '@/components/home-List.vue'
 import commodity from '@/components/commo-Dity.vue'
-import { getBanner, getHot } from '@/aip/Home'
+import { getBanner, getHot, getNew, getBrand } from '@/aip/Home'
 
 export default {
   data () {
     return {
       bannerList: '',
-      homeList: ''
+      homeList: '',
+      NewList: '',
+      BrandList: ''
     }
   },
   components: {
@@ -71,17 +102,31 @@ export default {
   },
   created () {
     this.GetBannerList()
+    this.GetHotList()
+    this.GetNewList()
+    this.GetBrandList()
   },
   methods: {
 
     async GetBannerList () {
       const res = await getBanner()
-      this.bannerList = res.data.result
-      console.log(this.bannerList)
+      this.bannerList = res
+      // console.log(this.bannerList)
     },
 
     async GetHotList () {
       const res = await getHot()
+      this.homeList = res
+      // console.log(res)
+    },
+    async GetNewList () {
+      const res = await getNew()
+      // console.log(res)
+      this.NewList = res
+    },
+    async GetBrandList () {
+      const res = await getBrand()
+      this.BrandList = res
       console.log(res)
     }
   }

@@ -41,7 +41,7 @@ export default {
 <style lang="scss" scoped>
 .Mask{
     position: absolute;
-    z-index: 999;
+    // z-index: 999;
     top: 0;
     left: 635px;
     width: 50%;
@@ -52,6 +52,7 @@ export default {
       width: 20%;
       height: 100%;
       background: black;
+      z-index: 999;
       ul{
         width: 100%;
         height: 100%;
@@ -70,11 +71,13 @@ export default {
     }
     .Navtitle:hover ~.List{
       display: block;
+      z-index: 999;
     }
     .List{
       height: 100%;
-      display: none;
       flex:1;
+      display: none;
+      width: 100%;
       background-color: rgba(255, 255, 255, 0.5);
       overflow: hidden;
       .title{

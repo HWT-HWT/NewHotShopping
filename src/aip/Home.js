@@ -15,3 +15,18 @@ export function getHot () {
     url: '/home/hot'
   })
 }
+
+export function getNew () {
+  return http({
+    url: '/home/new'
+  })
+}
+
+export function getBrand () {
+  return http({
+    url: '/home/brand',
+    params: {
+      limit: 4
+    }
+  })
+}
