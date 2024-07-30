@@ -5,7 +5,7 @@
           </div>
           <div class="text">
             <p><slot name="title"></slot></p>
-            <p><slot name="text"></slot></p>
+            <p style="color: #ccc;"><slot name="text"></slot></p>
           </div>
         </div>
 </template>
@@ -18,9 +18,9 @@ export default {
 
 <style lang="scss" scoped>
     .commodity{
-      width: 24%;
+      padding: 25px;
+      width: 20%;
       height: 100%;
-      border: 1px solid black;
       display: inline-block;
       margin: 0 auto;
       margin-left:5px;
@@ -28,11 +28,12 @@ export default {
       box-shadow: none;
       .image{
         width: 100%;
-        height: 75%;
-        border: 1px solid black;
+        height: 80%
 
       }
       .text{
+        // height: 30%;
+        margin-top:20px ;
         font-size: 18px;
         text-align: center;
         line-height: 30px;

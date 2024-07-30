@@ -2,7 +2,7 @@
   <div class="Mask">
       <div class="Navtitle">
         <ul>
-          <li v-for="item in 10" :key="item">123</li>
+          <li v-for="item in HeaderList" :key="item.id">{{item.name}}  {{item.children[0].name}} </li>
         </ul>
       </div>
       <div class="List">
@@ -10,7 +10,7 @@
             <span style="font-size: 20px;">分类推荐: </span>
             <span>根据你的购买记录浏览记录推荐</span>
           </div>
-          <div class="conten" v-for="item in 9" :key="item">
+          <div class="conten" v-for="item in HeaderList" :key="item.id">
             <div class="contenAll">
               <div class="image" >
 
@@ -34,6 +34,16 @@
 
 <script>
 export default {
+  data () {
+    return {
+
+    }
+  },
+  props: {
+    HeaderList: {
+      type: [Array, String]
+    }
+  }
 
 }
 </script>
@@ -59,7 +69,7 @@ export default {
         color: white;
         li{
           width: 100%;
-          height: 10%;
+          height: 11%;
           display: inline-block;
           text-align: center;
           align-content: center;

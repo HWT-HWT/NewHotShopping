@@ -30,3 +30,8 @@ export function getBrand () {
     }
   })
 }
+export function getHeader () {
+  return http({
+    url: '/home/category/head'
+  })
+}

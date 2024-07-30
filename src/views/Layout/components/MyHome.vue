@@ -8,7 +8,7 @@
           </el-carousel-item>
         </el-carousel>
       </div>
-      <BannerMask></BannerMask>
+      <BannerMask :HeaderList="HeaderList"></BannerMask>
     </div>
 
     <homeList>
@@ -70,7 +70,7 @@
           <template #title>
             {{item.desc}}
           </template>
-          <template #text >
+          <template #text v-if="item.price">
             <p style="color: red;">{{'￥'+item.price}}</p>
           </template>
         </commodity>
@@ -84,7 +84,7 @@
 import BannerMask from '@/components/banner-Mask.vue'
 import homeList from '@/components/home-List.vue'
 import commodity from '@/components/commo-Dity.vue'
-import { getBanner, getHot, getNew, getBrand } from '@/aip/Home'
+import { getBanner, getHot, getNew, getBrand, getHeader } from '@/aip/Home'
 
 export default {
   data () {
@@ -92,7 +92,8 @@ export default {
       bannerList: '',
       homeList: '',
       NewList: '',
-      BrandList: ''
+      BrandList: '',
+      HeaderList: ''
     }
   },
   components: {
@@ -105,6 +106,7 @@ export default {
     this.GetHotList()
     this.GetNewList()
     this.GetBrandList()
+    this.GetHeaderList()
   },
   methods: {
 
@@ -127,7 +129,12 @@ export default {
     async GetBrandList () {
       const res = await getBrand()
       this.BrandList = res
-      console.log(res)
+      // console.log(res)
+    },
+    async GetHeaderList () {
+      const res = await getHeader()
+      this.HeaderList = res
+      console.log(this.HeaderList)
     }
   }
 }

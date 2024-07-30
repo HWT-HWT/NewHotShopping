@@ -13,8 +13,7 @@
         <div class="image"></div>
         <div class="titleNav">
           <ul>
-            <li v-for="item in 10" :key="item"><a href=""><router-link to="/home">首页</router-link></a></li>
-
+            <li v-for="item in HeaderList" :key="item.id"><a href=""><router-link to="/home">{{item.name}}</router-link></a></li>
           </ul>
         </div>
         <div class="search">
@@ -127,12 +126,7 @@
             <div class="text">
               <div class="textTitle">
                 <ul>
-                  <li><a href="">帮助我们</a></li>
-                  <li><a href="">帮助我们</a></li>
-                  <li><a href="">帮助我们</a></li>
-                  <li><a href="">帮助我们</a></li>
-                  <li><a href="">帮助我们</a></li>
-                  <li><a href="">帮助我们</a></li>
+                  <li v-for="item in 5" :key="item"><a href="">帮助我们</a></li>
                 </ul>
                 <p>CopyRigth@小兔鲜</p>
               </div>
@@ -144,9 +138,24 @@
 
 <script>
 import Footer from '@/components/My-Footer.vue'
+import { getHeader } from '@/aip/Home'
 export default {
   name: 'MyLayout',
-
+  data () {
+    return {
+      HeaderList: ''
+    }
+  },
+  created () {
+    this.GetHeaderList()
+  },
+  methods: {
+    async GetHeaderList () {
+      const res = await getHeader()
+      this.HeaderList = res
+      console.log(this.HeaderList)
+    }
+  },
   components: {
     Footer
   }
