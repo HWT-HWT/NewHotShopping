@@ -23,21 +23,17 @@ export default {
 .list{
   width: 50%;
   height: 500px;
-  // border: 1px solid black;
   background: #fff;
   margin: 0 auto;
   .title{
     width: 90%;
     height: 20%;
-    // border: 1px solid black;
     align-content: center;
     margin: 0 auto;
   }
   .conten{
-
     width: 90%;
     height: 60%;
-    // border: 1px solid black;
     margin: 0 auto;
   }
 }

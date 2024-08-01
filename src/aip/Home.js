@@ -35,3 +35,9 @@ export function getHeader () {
     url: '/home/category/head'
   })
 }
+
+export function getGoods () {
+  return http({
+    url: '/home/goods'
+  })
+}

@@ -29,15 +29,14 @@ export default {
       .image{
         width: 100%;
         height: 80%
-
       }
       .text{
-        // height: 30%;
-        margin-top:20px ;
-        font-size: 18px;
         text-align: center;
         line-height: 30px;
+        background: #f0f9f4;
+        font-size: 20px;
         p{
+
           width: 100%;
           height: 30px;
           overflow: hidden;

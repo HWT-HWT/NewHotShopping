@@ -153,7 +153,6 @@ export default {
     async GetHeaderList () {
       const res = await getHeader()
       this.HeaderList = res
-      console.log(this.HeaderList)
     }
   },
   components: {
@@ -164,7 +163,7 @@ export default {
 
 <style lang="scss" scoped>
 #MyLayout{
-  background: #ccc;
+  background: #fff;
   .header{
     .top{
   width: 100%;
@@ -250,9 +249,11 @@ export default {
   .assembly{
   width: 100%;
   height: 100%;
-  border: 1px solid black;
+
+  margin-bottom: 50px;
   }
   .footer{
+    // border-top:1px solid black ;
     width: 100%;
     background: white;
     .footerone{

@@ -1,29 +1,29 @@
 <template>
-  <div class="Mask">
+  <div class="Mask"  @mouseleave="handleMouseleave">
       <div class="Navtitle">
-        <ul>
-          <li v-for="item in HeaderList" :key="item.id">{{item.name}}  {{item.children[0].name}} </li>
+        <ul >
+          <li @mouseenter="handleMouseenter(item.id)" v-for="item in HeaderList" :key="item.id">{{item.name}}  {{item.children[0].name}} </li>
         </ul>
       </div>
-      <div class="List">
+      <div class="List" v-if="Mask">
           <div class="title">
             <span style="font-size: 20px;">分类推荐: </span>
             <span>根据你的购买记录浏览记录推荐</span>
           </div>
-          <div class="conten" v-for="item in HeaderList" :key="item.id">
+          <div class="conten" v-for="item in recommend.goods" :key="item.id">
             <div class="contenAll">
               <div class="image" >
-
+                <img style="width: 100%;" :src="item.picture" alt="">
               </div>
               <div class="text">
                 <div style="height: 50%;  word-wrap: break-word; overflow: hidden; font-size: 18px; line-height: 28px;">
-                  暖腰暖腹暖胃,新艾暖宫带暖腰
+                  {{item.name}}
                 </div>
                 <div style="height: 20%; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #aaa;">
-                  暖腰暖腹暖胃,新艾暖宫带暖腰暖腰暖腹暖胃,新艾暖宫带暖腰暖腰暖腹暖胃,新艾暖宫带暖腰
+                  {{item.desc}}
                 </div>
                 <div style="font-size: 23px; color: red; margin-top: 5px;">
-                  ￥35.00
+                  {{item.price}}
                 </div>
               </div>
             </div>
@@ -36,12 +36,24 @@
 export default {
   data () {
     return {
-
+      Mask: '',
+      recommend: ''
     }
   },
   props: {
     HeaderList: {
       type: [Array, String]
+    }
+  },
+  methods: {
+    handleMouseenter (id) {
+      this.Mask = true
+      this.recommend = this.$props.HeaderList.find(item => item.id === id)
+      console.log(this.recommend)
+    },
+    handleMouseleave () {
+      this.Mask = false
+      // console.log(e)
     }
   }
 
@@ -79,14 +91,11 @@ export default {
     li:hover{
       background: #ccc;
     }
-    .Navtitle:hover ~.List{
-      display: block;
-      z-index: 999;
-    }
+
     .List{
       height: 100%;
       flex:1;
-      display: none;
+      z-index: 999;
       width: 100%;
       background-color: rgba(255, 255, 255, 0.5);
       overflow: hidden;
@@ -109,9 +118,9 @@ export default {
           height: 100%;
           display: flex;
            .image{
-          width: 100px;
+          width: 115px;
           height: 90%;
-          border: 1px solid #ccc;
+          // border: 1px solid #ccc;
           margin: 5px 5px;
         }
 
