@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Layout from '@/views/Layout/MyLayout.vue'
-
 Vue.use(VueRouter)
+
+// const category =
 
 const routes = [
   {
@@ -14,6 +15,10 @@ const routes = [
       {
         path: 'Home',
         component: () => import('@/views/Layout/components/MyHome.vue')
+      },
+      {
+        path: 'category/:id',
+        component: () => import('@/views/Layout/components/ClassifiCation.vue')
       }
     ]
   },

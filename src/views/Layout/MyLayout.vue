@@ -13,7 +13,8 @@
         <div class="image"></div>
         <div class="titleNav">
           <ul>
-            <li v-for="item in HeaderList" :key="item.id"><a href=""><router-link to="/home">{{item.name}}</router-link></a></li>
+            <li><a href=""><router-link to='/home'>首页</router-link></a></li>
+            <li v-for="item in HeaderList" :key="item.id"><a @click="ClickNav(item.id)">{{item.name}}</a></li>
           </ul>
         </div>
         <div class="search">
@@ -30,7 +31,7 @@
     </div>
 
     <div class="assembly">
-      <router-view></router-view>
+      <router-view :AtHomee="AtHomeList"></router-view>
     </div>
 
     <div class="footer">
@@ -139,11 +140,13 @@
 <script>
 import Footer from '@/components/My-Footer.vue'
 import { getHeader } from '@/aip/Home'
+import { GetAtHome } from '@/aip/AllCategories'
 export default {
   name: 'MyLayout',
   data () {
     return {
-      HeaderList: ''
+      HeaderList: '',
+      AtHomeList: ''
     }
   },
   created () {
@@ -153,6 +156,16 @@ export default {
     async GetHeaderList () {
       const res = await getHeader()
       this.HeaderList = res
+    },
+    async ClickNav (id) {
+      if (this.$route.params.id === id) {
+        return
+      }
+      this.$router.push({ path: '/category/' + id })
+
+      const res = await GetAtHome(id)
+      console.log(res)
+      this.AtHomeList = res
     }
   },
   components: {

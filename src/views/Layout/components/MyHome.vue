@@ -65,16 +65,7 @@
             <img style="width: 100%; height: 100%;" :src="item.picture" alt="">
           </div>
           <div class="MinCommodity" >
-            <div class="Commodity_Content"  v-for="index in item.goods" :key="index.id">
-              <div class="image">
-                <img style="width: 100%; height: 100%;" :src="index.picture" alt="">
-              </div>
-              <div class="text">
-                <p>{{index.name}}</p>
-                <p>{{index.desc}}</p>
-                <p style="color: red;">{{'￥'+index.price}}</p>
-              </div>
-            </div>
+            <productList :goods="item.goods"></productList>
           </div>
         </div>
       </div>
@@ -87,6 +78,7 @@
 import BannerMask from '@/components/banner-Mask.vue'
 import homeList from '@/components/home-List.vue'
 import commodity from '@/components/commo-Dity.vue'
+import productList from '@/components/Product-list.vue'
 import { getBanner, getHot, getNew, getBrand, getHeader, getGoods } from '@/aip/Home'
 
 export default {
@@ -103,7 +95,8 @@ export default {
   components: {
     BannerMask,
     homeList,
-    commodity
+    commodity,
+    productList
   },
   created () {
     this.GetBannerList()
@@ -204,34 +197,6 @@ export default {
           height: 100%;
           display: flex;
           flex-wrap: wrap;
-          .Commodity_Content{
-            width: 22%;
-            margin: 0 auto;
-            height: 45%;
-            transition: box-shadow 0.5s ease-in-out;
-            background: #fff;
-            .image{
-              width: 70%;
-              height: 60%;
-              margin: 0 auto;
-            }
-            .text{
-              width: 80%;
-              height: 40%;
-              margin: 0 auto;
-              text-align: center;
-              align-content: center;
-              p{
-                overflow: hidden;
-                text-overflow: ellipsis;
-                height: 30%; white-space: nowrap;
-              }
-            }
-          }
-          .Commodity_Content:hover{
-            box-shadow:0px 5px 10px rgba(125, 125, 125, 0.5);
-            margin-top:-2px ;
-          }
         }
       }
     }
