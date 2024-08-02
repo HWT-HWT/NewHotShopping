@@ -1,7 +1,7 @@
 <template>
   <div class="list">
       <div class="title">
-        <span style="font-size: 24px;"><slot name="title">人气推荐</slot> </span>
+        <span style="font-size: 30px;"><slot name="title">人气推荐</slot> </span>
         <span style="font-size: 15px; color: #aaa5af;"><slot name="text">人气推荐 品质靠谱</slot></span>
       </div>
 
@@ -29,12 +29,12 @@ export default {
     width: 90%;
     height: 20%;
     align-content: center;
-    margin: 0 auto;
   }
   .conten{
-    width: 90%;
-    height: 60%;
+    width: 100%;
+    height: 80%;
     margin: 0 auto;
+    // border: 1px solid black;
   }
 }
 </style>

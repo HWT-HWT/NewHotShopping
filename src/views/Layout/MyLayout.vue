@@ -262,10 +262,10 @@ export default {
   .assembly{
   width: 100%;
   height: 100%;
-
   margin-bottom: 50px;
   }
   .footer{
+    margin-top:200px ;
     // border-top:1px solid black ;
     width: 100%;
     background: white;

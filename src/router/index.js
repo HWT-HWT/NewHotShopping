@@ -19,6 +19,10 @@ const routes = [
       {
         path: 'category/:id',
         component: () => import('@/views/Layout/components/ClassifiCation.vue')
+      },
+      {
+        path: '/sbu/:id',
+        component: () => import('@/views/Layout/components/ArtiCle.vue')
       }
     ]
   },

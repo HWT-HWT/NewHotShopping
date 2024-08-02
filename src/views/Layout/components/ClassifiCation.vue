@@ -76,7 +76,7 @@ export default {
   .ClassifiCation{
     width: 100%;
     // height: 1000px;
-    border: 1px solid black;
+    // border: 1px solid black;
     background: #f5f5f5;
     .banner{
       position: relative;

@@ -5,7 +5,7 @@
           </div>
           <div class="text">
             <p><slot name="title"></slot></p>
-            <p style="color: #ccc;"><slot name="text"></slot></p>
+            <p style="color: #888888;"><slot name="text"></slot></p>
           </div>
         </div>
 </template>
@@ -18,14 +18,15 @@ export default {
 
 <style lang="scss" scoped>
     .commodity{
-      padding: 25px;
-      width: 20%;
+      // padding: 25px;
+      width: 24%;
       height: 100%;
       display: inline-block;
       margin: 0 auto;
       margin-left:5px;
       transition: box-shadow 0.5s ease-in-out;
       box-shadow: none;
+      background: #f0f9f4;
       .image{
         width: 100%;
         height: 80%
@@ -33,7 +34,7 @@ export default {
       .text{
         text-align: center;
         line-height: 30px;
-        background: #f0f9f4;
+
         font-size: 20px;
         p{
 

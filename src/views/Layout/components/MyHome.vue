@@ -58,7 +58,7 @@
     <div  class="Product"  v-for="item in GoosList" :key="item.id">
       <div class="content">
         <div class="title">
-          <span style="font-size: 25px;">{{item.name}}</span>
+          <span style="font-size: 30px;">{{item.name}}</span>
         </div>
         <div class="commodity">
           <div class="MaxCommodity">
@@ -172,15 +172,18 @@ export default {
   .Product{
     width: 100%;
     height: 600px;
+    // border: 1px solid black;
+    margin: 100px auto;
     .content{
-      width: 44%;
+      width: 50%;
       height: 100%;
+      // border: 1px solid black;
       margin: 0 auto;
       .title{
         width: 100%;
         height: 10%;
         align-content: center;
-
+        margin: 30px auto;
       }
       .commodity{
         width: 100%;
