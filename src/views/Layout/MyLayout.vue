@@ -162,11 +162,11 @@ export default {
         return
       }
       this.$router.push({ path: '/category/' + id })
-
       const res = await GetAtHome(id)
       console.log(res)
       this.AtHomeList = res
     }
+
   },
   components: {
     Footer
@@ -265,7 +265,7 @@ export default {
   margin-bottom: 50px;
   }
   .footer{
-    margin-top:200px ;
+    margin-top:100px ;
     // border-top:1px solid black ;
     width: 100%;
     background: white;

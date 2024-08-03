@@ -16,7 +16,7 @@
            全部分类
         </div>
         <div class="content">
-          <ProductList :goods="AtHomee.children || AtHome.children"></ProductList>
+          <ProductList :goods="AtHomee.children || AtHome.children" :Istrue="true"></ProductList>
         </div>
       </div>
     </div>
@@ -48,7 +48,7 @@ export default {
   created () {
     this.GetBannerList()
     this.GetAtHomeList()
-    console.log(this.$props.AtHomee)
+    // console.log(this.$props.AtHomee)
   },
   methods: {
     async GetBannerList () {

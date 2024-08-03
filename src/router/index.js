@@ -17,12 +17,16 @@ const routes = [
         component: () => import('@/views/Layout/components/MyHome.vue')
       },
       {
-        path: 'category/:id',
+        path: '/category/:id',
         component: () => import('@/views/Layout/components/ClassifiCation.vue')
       },
       {
-        path: '/sbu/:id',
+        path: '/category/sbu/:id',
         component: () => import('@/views/Layout/components/ArtiCle.vue')
+      },
+      {
+        path: '/details/:id',
+        component: () => import('@/views/Layout/components/DetAils.vue')
       }
     ]
   },

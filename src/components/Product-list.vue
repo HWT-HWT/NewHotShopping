@@ -23,6 +23,9 @@ export default {
   props: {
     goods: {
       type: [Object, Array]
+    },
+    Istrue: {
+      type: Boolean
     }
   },
   created () {
@@ -30,8 +33,11 @@ export default {
   },
   methods: {
     navArticli (id) {
-      console.log(id)
-      this.$router.push({ path: '/sbu/' + id })
+      if (this.$props.Istrue) {
+        this.$router.push({ path: '/category/sbu/' + id })
+      } else {
+        this.$router.push({ path: '/details/' + id })
+      }
     }
   }
 
@@ -40,14 +46,11 @@ export default {
 
 <style lang="scss" scoped>
           .Commodity_Content{
-            // display: flex;
             width: 20%;
             margin-top: 10px;
             margin-bottom: 10px;
             margin-left:5px;
-            // height: 50%;
             transition: box-shadow 0.5s ease-in-out;
-            // border: 1px solid black;
             background: #fff;
             padding: 10px;
             .image{
