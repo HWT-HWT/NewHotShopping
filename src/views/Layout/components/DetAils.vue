@@ -4,40 +4,59 @@
       <div class="Banner_DetaList">
         <div class="banner">
           <div class="maxBanner">
-            <!-- {{DetaList.mainPictures}} -->
+            <img style="width: 100%; height: 100%;" :src=" maxBanner || DetaList.mainPictures[0]" alt="">
           </div>
           <div class="minBanner">
-            <div class="minImg" v-for="item in DetaList.mainPictures" :key="item">
+            <div class="minImg" @click="MinImg(item)" v-for="item in DetaList.mainPictures" :key="item">
               <img style="width: 100%; height: 100%;" :src="item" alt="">
             </div>
           </div>
         </div>
         <div class="details">
-          <div class="text" v-for="item in 4" :key="item">
+          <div class="text">
             <p>销量人气</p>
-            <p>123</p>
-            <p>销量人气</p>
+            <p style="margin: 10px auto; color: red;">{{DetaList.salesCount}}</p>
+            <p style="color: #666666;">销量人气</p>
+          </div>
+          <div class="text">
+            <p>商品评价</p>
+            <p style="margin: 10px auto; color: red;">{{DetaList.videoScale}}</p>
+            <p style="color: #666666;">查看评价</p>
+          </div>
+          <div class="text">
+            <p>收藏人气</p>
+            <p style="margin: 10px auto; color: red;">{{DetaList.collectCount}}</p>
+            <p style="color: #666666;">收藏商品</p>
+          </div>
+          <div class="text">
+            <p>品牌信息</p>
+            <p style="margin: 10px auto; color: red;">{{DetaList.brand.name}}</p>
+            <p style="color: #666666;">品牌主页</p>
           </div>
         </div>
       </div>
       <div class="DetaText">
         <p style="font-size: 25px;"> {{DetaList.name}}</p>
-        <p style="font-size: 15px; color: #bababa;">{{DetaList.desc}}</p>
+        <p style="font-size: 15px; margin:10px auto ; color: #bababa;">{{DetaList.desc}}</p>
         <p><a style="color: red; font-size: 20px;">￥{{DetaList.price}}</a> <a style="text-decoration:line-through">￥{{DetaList.oldPrice}}</a></p>
         <div class="preferential">
-          <p>促销</p>
-          <p>服务</p>
+          <p>促销 <a href="">12月好物放送,APP领卷购买120元</a></p>
+          <p>服务 <a href="">无忧退货 快熟退款 免费包邮 点击了解</a></p>
         </div>
-        <div class="sku">
-          <div class="skuImg">规格</div>
-          <div class="skuImg" v-for="item in DetaList.skus" :key="item.id">
-            <img style="width: 100%;" :src="item.picture" alt="">
+        <div class="sku"  v-for="item in DetaList.specs" :key="item.id">
+          <div class="skutext" >{{item.name}}</div>
+          <div style=" align-items: center; height: 100%; display: flex; flex-wrap: wrap; width: 100%;">
+            <div class="skuImg" :class="{Sku_text:!index.picture}" v-for="(index,sum) in item.values" :key="sum">
+              <img style="width: 100%; height: 100%;" v-if="index.picture" :src="index.picture" alt="">
+              <div style="margin: 5px;" class="text" v-else>{{index.name}}</div>
+            </div>
           </div>
         </div>
         <div class="number">
-
+          <el-input-number v-model="num" @change="handleChange" :min="1" :max="DetaList.inventory" label="描述文字"></el-input-number>
         </div>
-        <button>加入购物车</button>
+
+        <el-button type="info" plain>加入购物车</el-button>
       </div>
     </div>
   </div>
@@ -48,7 +67,9 @@ import { GetDeta } from '@/aip/AllCategories'
 export default {
   data () {
     return {
-      DetaList: ''
+      DetaList: '',
+      maxBanner: '',
+      num: 1
     }
   },
   methods: {
@@ -56,6 +77,15 @@ export default {
       const res = await GetDeta(this.$route.params.id)
       console.log(res)
       this.DetaList = res
+    },
+    // 小图控制大图
+    MinImg (minimg) {
+      console.log(minimg)
+      this.maxBanner = minimg
+    },
+    handleChange (value) {
+      console.log(value)
+      // this.num
     }
   },
   created () {
@@ -67,65 +97,70 @@ export default {
 <style lang="scss" scoped>
 .details{
   width: 100%;
-  height: 600px;
-  border: 1px solid black;
   .details_conten{
     width: 50%;
     height: 100%;
-    border: 1px solid black;
+    // border: 1px solid black;
     margin: 0 auto;
     display: flex;
     .Banner_DetaList{
       width: 50%;
       height: 100%;
-      border: 1px solid black;
+      // border: 1px solid black;
+      margin-right:40px ;
       .banner{
         width: 100%;
         height: 80%;
-        border: 1px solid red;
+        // border: 1px solid red;
         display: flex;
         .maxBanner{
           width: 82%;
           height: 100%;
-          border: 1px solid red;
+          // border: 1px solid red;
         }
         .minBanner{
           width: 18%;
           height: 100%;
-          border: 1px solid red;
+          // border: 1px solid red;
           .minImg{
-            width:100%;
-            height: 20%;
-            border: 1px solid red;
-
+            width:80%;
+            height: 19%;
+            // border: 1px solid red;
+            margin:0 auto;
+            margin-bottom:6px ;
+            // padding: 10px;
           }
         }
       }
       .details{
         width: 100%;
         height: 20%;
-        border: 1px solid red;
+        // border: 1px solid red;
         display: flex;
         .text{
           width: 20%;
-          height: 100%;
-          border: 1px solid red;
+          height: 60%;
+          border-right: 1px solid #e4e4e4;
+          margin-top:20px ;
           text-align: center;
           align-content: center;
+          p{
+            color: #999999;
+          }
         }
       }
     }
     .DetaText{
-      width: 50%;
+      width: 40%;
       height: 100%;
-      border: 1px solid black;
+      // border: 1px solid black;
       line-height: 30px;
       .preferential{
         width: 100%;
         height: 20%;
-        border: 1px solid black;
+        // border: 1px solid black;
         font-size: 18px;
-        // line-height: 50px;
+        background: #f5f5f5;
         align-content: center;
         p{
           margin:10px 10px;
@@ -133,20 +168,46 @@ export default {
       }
       .sku{
         width: 100%;
-        height: 15%;
-        border: 1px solid black;
-
         display: flex;
+        align-items: center;
+        .skutext{
+          margin-right:10px;
+          flex: 1;
+          text-align: center;
+          display: flex;
+          align-items: center;
+          color: #999999;
+          justify-content: center;
+        }
         .skuImg{
-          margin-top:12px ;
+          margin-top:5px ;
           margin-right:10px ;
           width: 10%;
-          height: 70%;
-          align-content: center;
-          text-align: center;
-          border: 1px solid black;
+          height: 25%;
+          align-items: center;
+          background: #ebebeb;
+          display: flex;
+          flex-wrap:wrap;
         }
+        .Sku_text{
+          width: auto;
+        }
+
       }
+      .number{
+        margin: 30px auto;
+      }
+
+      .el-button{
+        background: #fff;
+        color: black;
+      }
+      .el-button:hover{
+        background: #e9f8f5;
+        color: #9ebfb2;
+        border: 1px solid #beeae1;
+      }
+
     }
   }
 }
