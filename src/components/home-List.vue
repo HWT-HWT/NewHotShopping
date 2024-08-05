@@ -22,13 +22,16 @@ export default {
 <style lang="scss" scoped>
 .list{
   width: 50%;
-  height: 500px;
+  height: auto;
   background: #fff;
   margin: 0 auto;
   .title{
     width: 90%;
-    height: 20%;
+    height: 50%;
+    // border: 1px solid black;
     align-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
   }
   .conten{
     width: 100%;

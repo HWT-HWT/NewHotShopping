@@ -63,12 +63,10 @@ export default {
 <style lang="scss" scoped>
 .Mask{
     position: absolute;
-    // z-index: 999;
     top: 0;
-    // left: 635px;
     left: 25%;
     width: 50%;
-    height: 500px;
+    height: 100%;
     display: flex;
     flex-wrap: wrap;
     .Navtitle{
@@ -94,6 +92,8 @@ export default {
     }
 
     .List{
+      // width: 30%;
+      // display: flex;
       height: 100%;
       flex:1;
       z-index: 999;
@@ -113,11 +113,12 @@ export default {
         border: 1px solid #e8e6e6;
         background: #fff;
         display: inline-block;
-        margin: 5px  15px;
+        margin: 5px  10px;
         .contenAll{
           width: 100%;
           height: 100%;
           display: flex;
+          flex-wrap:wrap;
            .image{
           width: 115px;
           height: 90%;

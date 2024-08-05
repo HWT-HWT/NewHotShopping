@@ -100,7 +100,7 @@
               服务热线
             </template>
             <template #customer>
-              <div class="i"  style="border: none;">
+              <div class="i"  style="border: none; width: 100%; font-size: 15px; ">
                 400-000-000
                 <br>
                 周一到周日8:00-18:00
@@ -192,8 +192,8 @@ export default {
     line-height: 50px;
     li{
       display: inline-block;
-      // margin-left: 10px;
-      width: 6%;
+      margin-left: 10px;
+      width: auto;
       a{
         color: #cdcdcd;
       }

@@ -20,7 +20,7 @@ export default {
     .commodity{
       // padding: 25px;
       width: 24%;
-      height: 100%;
+      height: auto;
       display: inline-block;
       margin: 0 auto;
       margin-left:5px;
@@ -34,7 +34,6 @@ export default {
       .text{
         text-align: center;
         line-height: 30px;
-
         font-size: 20px;
         p{
 

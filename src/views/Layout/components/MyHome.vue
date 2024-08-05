@@ -4,7 +4,7 @@
       <div class="block">
         <el-carousel height="500px" >
           <el-carousel-item v-for="item in bannerList" :key="item.id">
-            <img style="width: 100%; " class="small" :src="item.imgUrl" alt="">
+            <img style="width: 100%; height: 100%;" class="small" :src="item.imgUrl" alt="">
           </el-carousel-item>
         </el-carousel>
       </div>
