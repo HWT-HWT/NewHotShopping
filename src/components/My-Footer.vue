@@ -21,20 +21,16 @@ export default {
   width: 100%;
   text-align: center;
   padding: 20px;
-  // border: 1px solid black;
   .conten{
     width: 100%;
     height: auto;
     margin: 20px auto;
-    // border: 1px solid black;
     .ioce{
       width: 100%;
-      // height: 100%;
       display: flex;
       margin:  0 auto;
       margin-top:10px ;
       padding: 10px;
-      // border: 1px solid;
       .i{
         align-content: center;
         width: 100px;

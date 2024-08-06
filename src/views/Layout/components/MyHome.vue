@@ -62,7 +62,7 @@
         </div>
         <div class="commodity">
           <div class="MaxCommodity">
-            <img style="width: 100%; height: 100%;" :src="item.picture" alt="">
+            <img style="width: 100%; height: 100%;" v-lazy="item.picture" alt="">
           </div>
           <div class="MinCommodity" >
             <productList :goods="item.goods"></productList>

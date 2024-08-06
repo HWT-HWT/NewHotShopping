@@ -48,7 +48,6 @@ export default {
   created () {
     this.GetBannerList()
     this.GetAtHomeList()
-    // console.log(this.$props.AtHomee)
   },
   methods: {
     async GetBannerList () {

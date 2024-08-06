@@ -59,6 +59,23 @@
         <el-button type="info" plain>加入购物车</el-button>
       </div>
     </div>
+
+    <div class="Product_desciption">
+      <div class="desciption">
+        <div class="title">
+          商品详情
+        </div>
+        <div class="text" >
+          <div style="width: auto; height: 50%; display: flex; padding: 20px;" v-for="item in DetaList.details.properties" :key="item.id">
+              <div style="width: 20%;">{{item.name}}</div>
+              <div style="flex: 1;">{{item.value}}</div>
+          </div>
+        </div>
+        <div class="image" v-for="item in DetaList.details.pictures" :key="item.id" >
+          <img style="width: 100%; height: 100%;" v-lazy="item">
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -69,7 +86,8 @@ export default {
     return {
       DetaList: '',
       maxBanner: '',
-      num: 1
+      num: 1,
+      url: 'https://yanxuan-item.nosdn.127.net/af759ee5e5d47e8f268de061d313a35c.jpg'
     }
   },
   methods: {
@@ -85,7 +103,6 @@ export default {
     },
     handleChange (value) {
       console.log(value)
-      // this.num
     }
   },
   created () {
@@ -100,13 +117,13 @@ export default {
   .details_conten{
     width: 50%;
     height: 100%;
-    // border: 1px solid black;
     margin: 0 auto;
     display: flex;
+    margin-bottom: 40px;
     .Banner_DetaList{
       width: 50%;
       height: 100%;
-      // border: 1px solid black;
+
       margin-right:40px ;
       .banner{
         width: 100%;
@@ -153,12 +170,12 @@ export default {
     .DetaText{
       width: 40%;
       height: 100%;
-      // border: 1px solid black;
+
       line-height: 30px;
       .preferential{
         width: 100%;
         height: 20%;
-        // border: 1px solid black;
+
         font-size: 18px;
         background: #f5f5f5;
         align-content: center;
@@ -208,6 +225,38 @@ export default {
         border: 1px solid #beeae1;
       }
 
+    }
+  }
+
+  .Product_desciption{
+    width: 100%;
+    // height: 1200px;
+    .desciption{
+      width: 50%;
+      height: 100%;
+      margin: 0 auto;
+      .title{
+        width: auto;
+        align-items: center;
+        padding: 20px;
+        font-size: 30px;
+        margin: 50px auto;
+      }
+      .text{
+        width: 100%;
+        height: auto;
+        margin-bottom: 50px;
+        .p{
+          width: 50%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+        }
+      }
+      .image{
+        width: 100%;
+        margin: -5px auto;
+      }
     }
   }
 }

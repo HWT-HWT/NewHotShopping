@@ -13,7 +13,7 @@
           <div class="conten" v-for="item in recommend.goods" :key="item.id">
             <div class="contenAll">
               <div class="image" >
-                <img style="width: 100%;" :src="item.picture" alt="">
+                <img style="width: 100%;" v-lazy="item.picture" alt="">
               </div>
               <div class="text">
                 <div style="height: 50%;  word-wrap: break-word; overflow: hidden; font-size: 18px; line-height: 28px;">

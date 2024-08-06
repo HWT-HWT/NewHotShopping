@@ -2,7 +2,7 @@
   <div style="width: 100%; height: 100%; display:flex; flex-wrap: wrap;">
     <div class="Commodity_Content" v-for="index in goods" :key="index.id" @click="navArticli(index.id)">
       <div class="image">
-        <img style="width: 100%; height: 100%;" :src="index.picture" alt="">
+        <img style="width: 100%; height: 100%;" v-lazy="index.picture" alt="">
       </div>
         <div class="text">
           <p>{{index.name}}</p>
