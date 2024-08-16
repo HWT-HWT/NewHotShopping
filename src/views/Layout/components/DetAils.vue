@@ -44,7 +44,7 @@
           <p>服务 <a href="">无忧退货 快熟退款 免费包邮 点击了解</a></p>
         </div>
 
-        <Sku :sku = DetaList.specs :skus = DetaList.skus></Sku>
+        <Sku v-if="DetaList" :sku = DetaList ></Sku>
 
         <div class="number">
           <el-input-number v-model="num" @change="handleChange" :min="1" :max="DetaList.inventory" label="描述文字"></el-input-number>
@@ -102,8 +102,6 @@ export default {
         })
       })
       this.DetaList = res
-      console.log(res)
-
       // 将小图第一张照片当大图
       this.maxBanner = res.mainPictures[0]
       // 商品详情的文字详情

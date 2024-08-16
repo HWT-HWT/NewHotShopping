@@ -1,6 +1,6 @@
 <template>
   <div v-if="sku">
-    <div class="sku"  v-for="item in sku" :key="item.id" >
+    <div class="sku"  v-for="item in sku.specs" :key="item.id" >
       <div class="skutext" >{{item.name}}</div>
       <div style=" align-items: center; height: 100%; display: flex; flex-wrap: wrap; width: 100%;">
         <div class="skuImg"  v-for="(val,sum) in item.values" :key="sum">
@@ -13,7 +13,6 @@
 </template>
 
 <script>
-
 export default {
   data () {
     return {
@@ -24,47 +23,34 @@ export default {
     // 接收传递的数据
     sku: {
       type: [Object, Array]
-    },
-    skus: {
-      type: [Object, Array]
     }
+
   },
   created () {
-    console.log(this.$props.skus)
+    console.log(this.sku.specs)
+    console.log(this.sku.skus)
   },
   mounted () {
-    if (this.$props.skus) {
-      this.getPathMap()
-    }
   },
   methods: {
     // 切换选择状态
     changeSelectedStatus (item, val) {
       // item:是同排数据
       // val:是点击项
-      // 判断
+      // 添加选中时添加边框
       if (val.selected) {
         // 再次点击时这位取消 取消为false
         val.selected = false
       } else {
         // 先全部取消在 独自添加
 
-        // 先全部取消
+        // 先全部取消 全部隐藏
         item.values.forEach(val => {
           val.selected = false
         })
-        // 独自添加
+        // 独自添加true 单独显示
         val.selected = true
       }
-    },
-    getPathMap () {
-      const effectiveSkus = this.$props.skus.filter(sku => sku.inventory > 0)
-      console.log(effectiveSkus)
-
-      // effectiveSkus.forEach(sku => {
-      //   const selectedValArr = sku.specs.map(val => val.valueName)
-      //   console.log(selectedValArr)
-      // })
     }
   }
 }
