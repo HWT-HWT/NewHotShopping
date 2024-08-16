@@ -3,9 +3,9 @@
     <div class="header">
       <div class="top">
       <ul>
-        <li><a href="">请先登录</a></li>
-        <li><a href="">帮助中心</a></li>
-        <li><a href="">关于我们</a></li>
+        <li @click="GoLogin"><a href="#" >{{name ? name : "请您登录"}}</a></li>
+        <li><a href="#">帮助中心</a></li>
+        <li><a href="#">关于我们</a></li>
       </ul>
     </div>
     <div class="nav">
@@ -23,7 +23,7 @@
             <input type="text" placeholder="搜索">
           </div>
         </div>
-        <div class="cart">
+        <div class="cart" @click="GoCart">
           <i class="el-icon-shopping-cart-full" style="font-size: 30px;"></i>
         </div>
       </div>
@@ -145,26 +145,55 @@ export default {
   name: 'MyLayout',
   data () {
     return {
+      // 储存首页数据
       HeaderList: '',
-      AtHomeList: ''
+      // 储存二级分类的数据
+      AtHomeList: '',
+      // 储存用户名
+      name: '',
+      // 储存token
+      token: ''
     }
   },
   created () {
+    // 调用首页数据函数
     this.GetHeaderList()
+    // 获取localStorage里面的名字
+    this.name = localStorage.getItem('nickName')
+    this.token = localStorage.getItem('token')
   },
   methods: {
+    // 获取首页数据
     async GetHeaderList () {
+      // 发起数据请求
       const res = await getHeader()
+      // 将返回的数据保存
       this.HeaderList = res
     },
+    // 点击导航跳转 获取对应的二级分类数据
     async ClickNav (id) {
-      if (this.$route.params.id === id) {
-        return
-      }
+      // 点击id和url参数id一直不执行函数
+      if (this.$route.params.id === id) return
+      // 跳转到分类页携带id
       this.$router.push({ path: '/category/' + id })
+      // 发起请求获取二级分类数据
       const res = await GetAtHome(id)
       console.log(res)
+      // 将二级分类数据储存
       this.AtHomeList = res
+    },
+    // 跳转登录函数
+    GoLogin () {
+      // 判断没有登录过跳转登录页
+      if (!this.token) this.$router.push('/login')
+    },
+    // 跳转购物车函数
+    GoCart () {
+      console.log(this.$route.fullPath)
+      if (this.$route.fullPath === '/Cart') {
+        return
+      }
+      this.$router.push('/Cart')
     }
 
   },

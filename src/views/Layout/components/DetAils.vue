@@ -4,11 +4,11 @@
       <div class="Banner_DetaList">
         <div class="banner">
           <div class="maxBanner">
-            <img style="width: 100%; height: 100%;" :src=" maxBanner || DetaList.mainPictures[0]" alt="">
+            <img style="width: 100%; height: 100%;" :src="maxBanner" alt="">
           </div>
           <div class="minBanner">
             <div class="minImg" @click="MinImg(item)" v-for="item in DetaList.mainPictures" :key="item">
-              <img style="width: 100%; height: 100%;" :src="item" alt="">
+              <img style="width: 100%; height: 100%; margin-bottom: 4px;" :src="item" alt="">
             </div>
           </div>
         </div>
@@ -30,7 +30,7 @@
           </div>
           <div class="text">
             <p>品牌信息</p>
-            <p style="margin: 10px auto; color: red;">{{DetaList.brand.name}}</p>
+            <p style="margin: 10px auto; color: red;">{{DetaList.brand?.name}}</p>
             <p style="color: #666666;">品牌主页</p>
           </div>
         </div>
@@ -43,20 +43,14 @@
           <p>促销 <a href="">12月好物放送,APP领卷购买120元</a></p>
           <p>服务 <a href="">无忧退货 快熟退款 免费包邮 点击了解</a></p>
         </div>
-        <div class="sku"  v-for="item in DetaList.specs" :key="item.id">
-          <div class="skutext" >{{item.name}}</div>
-          <div style=" align-items: center; height: 100%; display: flex; flex-wrap: wrap; width: 100%;">
-            <div class="skuImg" :class="{Sku_text:!index.picture}" v-for="(index,sum) in item.values" :key="sum">
-              <img style="width: 100%; height: 100%;" v-if="index.picture" :src="index.picture" alt="">
-              <div style="margin: 5px;" class="text" v-else>{{index.name}}</div>
-            </div>
-          </div>
-        </div>
+
+        <Sku :sku = DetaList.specs :skus = DetaList.skus></Sku>
+
         <div class="number">
           <el-input-number v-model="num" @change="handleChange" :min="1" :max="DetaList.inventory" label="描述文字"></el-input-number>
         </div>
 
-        <el-button type="info" plain>加入购物车</el-button>
+        <el-button type="info" plain @click="AddCart">加入购物车</el-button>
       </div>
     </div>
 
@@ -66,12 +60,12 @@
           商品详情
         </div>
         <div class="text" >
-          <div style="width: auto; height: 50%; display: flex; padding: 20px;" v-for="item in DetaList.details.properties" :key="item.id">
+          <div style="width: auto; height: 50%; display: flex; padding: 20px;" v-for="item in properties" :key="item.id">
               <div style="width: 20%;">{{item.name}}</div>
               <div style="flex: 1;">{{item.value}}</div>
           </div>
         </div>
-        <div class="image" v-for="item in DetaList.details.pictures" :key="item.id" >
+        <div class="image" v-for="item in pictures" :key="item.id" >
           <img style="width: 100%; height: 100%;" v-lazy="item">
         </div>
       </div>
@@ -80,33 +74,79 @@
 </template>
 
 <script>
+import Sku from '@/components/MySku.vue'
 import { GetDeta } from '@/aip/AllCategories'
 export default {
   data () {
     return {
+      // 商品详情数据
       DetaList: '',
+      // 储存大图
       maxBanner: '',
+      // 商品数量
       num: 1,
-      url: 'https://yanxuan-item.nosdn.127.net/af759ee5e5d47e8f268de061d313a35c.jpg'
+      // 商品文字详情
+      properties: '',
+      // 商品照片详情
+      pictures: ''
     }
   },
   methods: {
+    // 发起商品详情数据
     async GetDetaList () {
       const res = await GetDeta(this.$route.params.id)
-      console.log(res)
+      // 将sku添加selected
+      res.specs.forEach(item => {
+        item.values.forEach(val => {
+          val.selected = false
+        })
+      })
       this.DetaList = res
+      console.log(res)
+
+      // 将小图第一张照片当大图
+      this.maxBanner = res.mainPictures[0]
+      // 商品详情的文字详情
+      this.properties = res.details.properties
+      // 商品照片详情
+      this.pictures = res.details.pictures
     },
     // 小图控制大图
     MinImg (minimg) {
-      console.log(minimg)
+      // 点击小图修改大图的照片
+      // console.log(minimg)
       this.maxBanner = minimg
     },
+    // 点击数量加减时在下面操作
     handleChange (value) {
       console.log(value)
+    },
+    // 加入购物车
+    AddCart () {
+      // 没有登录在下面操作
+      if (!localStorage.getItem('token')) {
+        this.$notify({
+          title: '请重新登录',
+          message: '未登录或登录时间过长',
+          type: 'warning'
+        })
+        // 跳转登录页
+        return this.$router.push('/login')
+      } else {
+        console.log('加入成功')
+      }
+    },
+    Cart (sum, name) {
+      this.isSelected = sum
+      this.isName = name
     }
   },
   created () {
+    // 发起商品数据函数
     this.GetDetaList()
+  },
+  components: {
+    Sku
   }
 }
 </script>
@@ -138,14 +178,13 @@ export default {
         .minBanner{
           width: 18%;
           height: 100%;
-          // border: 1px solid red;
           .minImg{
             width:80%;
-            height: 19%;
+            height: 20%;
             // border: 1px solid red;
             margin:0 auto;
-            margin-bottom:6px ;
-            // padding: 10px;
+            margin-bottom:8px ;
+            // padding: 2px;
           }
         }
       }
@@ -183,34 +222,7 @@ export default {
           margin:10px 10px;
         }
       }
-      .sku{
-        width: 100%;
-        display: flex;
-        align-items: center;
-        .skutext{
-          margin-right:10px;
-          flex: 1;
-          text-align: center;
-          display: flex;
-          align-items: center;
-          color: #999999;
-          justify-content: center;
-        }
-        .skuImg{
-          margin-top:5px ;
-          margin-right:10px ;
-          width: 10%;
-          height: 25%;
-          align-items: center;
-          background: #ebebeb;
-          display: flex;
-          flex-wrap:wrap;
-        }
-        .Sku_text{
-          width: auto;
-        }
 
-      }
       .number{
         margin: 30px auto;
       }

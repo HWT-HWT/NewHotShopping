@@ -36,7 +36,9 @@
 export default {
   data () {
     return {
+      // 控制遮罩 false 隐藏 | true 显示
       Mask: '',
+      // 筛选好的数据
       recommend: ''
     }
   },
@@ -46,14 +48,18 @@ export default {
     }
   },
   methods: {
+    // 鼠标移入事件
     handleMouseenter (id) {
+      // 移入就控制Mask 显示（为true）
       this.Mask = true
+      // 查找出鼠标悬停的数据
+      // 使用传递的id 筛选数据中的对应的数据
       this.recommend = this.$props.HeaderList.find(item => item.id === id)
       console.log(this.recommend)
     },
+    // 鼠标移出就将Mask改为false
     handleMouseleave () {
       this.Mask = false
-      // console.log(e)
     }
   }
 

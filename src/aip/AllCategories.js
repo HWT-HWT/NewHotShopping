@@ -1,5 +1,5 @@
 import http from '@/utils/http'
-
+// 全部分类
 export function GetAtHome (id) {
   return http({
     url: '/category',
@@ -8,7 +8,7 @@ export function GetAtHome (id) {
     }
   })
 }
-
+// 商品列表
 export function GetAtHomeGoods (id, page) {
   return http({
     url: 'category/goods/temporary',
@@ -21,7 +21,7 @@ export function GetAtHomeGoods (id, page) {
     }
   })
 }
-
+// 商品详情
 export function GetDeta (id) {
   return http({
     url: '/goods',

@@ -22,6 +22,7 @@ export default {
     this.GetAtHomeGoodsList()
   },
   methods: {
+    // 发起请求:首页商品数据
     async GetAtHomeGoodsList () {
       const res = await GetAtHomeGoods(this.$route.params.id, 1)
       console.log(res)

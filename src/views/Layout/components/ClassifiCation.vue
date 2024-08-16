@@ -50,13 +50,19 @@ export default {
     this.GetAtHomeList()
   },
   methods: {
+    // 请求轮播图数据
     async GetBannerList () {
+      // 获取轮播图数据
       const res = await getBanner()
+      // 存储轮播图
       this.bannerList = res
     },
+    // 请求二级分类数据
     async GetAtHomeList () {
+      // 请求二级分类数据
       const res = await GetAtHome(this.$route.params.id)
       console.log(res)
+      // 储存二级分类数据
       this.AtHome = res
     }
   },
@@ -64,6 +70,7 @@ export default {
     ProductList
   },
   props: {
+    // 首页传递二级导航数据
     AtHomee: {
       type: [Object, String]
     }

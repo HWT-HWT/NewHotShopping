@@ -1,5 +1,6 @@
 <template>
   <div style="width: 100%; height: 100%; display:flex; flex-wrap: wrap;">
+                                                                            <!-- 绑定事件 传递数据id -->
     <div class="Commodity_Content" v-for="index in goods" :key="index.id" @click="navArticli(index.id)">
       <div class="image">
         <img style="width: 100%; height: 100%;" v-lazy="index.picture" alt="">
@@ -32,10 +33,14 @@ export default {
 
   },
   methods: {
+    // 跳转二级分类或商品详情
     navArticli (id) {
+      // props.Istrue = true = 跳转二级分类  为false === 商品详情
       if (this.$props.Istrue) {
+        // 跳转二级分类
         this.$router.push({ path: '/category/sbu/' + id })
       } else {
+        // 跳转商品详情
         this.$router.push({ path: '/details/' + id })
       }
     }

@@ -84,11 +84,15 @@ import { getBanner, getHot, getNew, getBrand, getHeader, getGoods } from '@/aip/
 export default {
   data () {
     return {
+      // 首页轮播图
       bannerList: '',
+      // 首页数据
       homeList: '',
+      // 新鲜好物数据
       NewList: '',
-      BrandList: '',
+      // Mask数据
       HeaderList: '',
+      // 首页商品列表
       GoosList: ''
     }
   },
@@ -107,34 +111,38 @@ export default {
     this.GetGoodsList()
   },
   methods: {
-
+    // 获取banner大图
     async GetBannerList () {
       const res = await getBanner()
       this.bannerList = res
     },
-
+    //  获取人气推荐数据
     async GetHotList () {
       const res = await getHot()
       this.homeList = res
     },
+    //  获取新品好物数据
     async GetNewList () {
       const res = await getNew()
-
       this.NewList = res
     },
+    //  获取首页商品列表数据
     async GetBrandList () {
       const res = await getBrand()
+      // console.log(res)
       this.BrandList = res
     },
+    // 遮罩层Mask数据
     async GetHeaderList () {
       const res = await getHeader()
       this.HeaderList = res
-      console.log(this.HeaderList)
+      // console.log(this.HeaderList)
     },
+    // 首页商品列表数据
     async GetGoodsList () {
       const res = await getGoods()
       this.GoosList = res
-      console.log(res)
+      // console.log(res)
     }
   }
 }

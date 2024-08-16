@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Layout from '@/views/Layout/MyLayout.vue'
+
 Vue.use(VueRouter)
 
 // const category =
@@ -27,6 +28,10 @@ const routes = [
       {
         path: '/details/:id',
         component: () => import('@/views/Layout/components/DetAils.vue')
+      },
+      {
+        path: '/cart/',
+        component: () => import('@/views/Layout/components/MyCart.vue')
       }
     ]
   },
