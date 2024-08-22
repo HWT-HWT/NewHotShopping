@@ -4,3 +4,14 @@ export function GetCart () {
     url: '/member/cart'
   })
 }
+
+export function GetAddCart (skuId, count) {
+  return http({
+    url: '/member/cart',
+    method: 'POST',
+    data: {
+      skuId,
+      count
+    }
+  })
+}

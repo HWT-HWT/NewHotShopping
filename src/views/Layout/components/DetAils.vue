@@ -44,7 +44,7 @@
           <p>服务 <a href="">无忧退货 快熟退款 免费包邮 点击了解</a></p>
         </div>
 
-        <Sku v-if="DetaList" :sku = DetaList ></Sku>
+        <Sku v-if="DetaList" :sku = DetaList  @SkuId:data="GetSkuId"  ></Sku>
 
         <div class="number">
           <el-input-number v-model="num" @change="handleChange" :min="1" :max="DetaList.inventory" label="描述文字"></el-input-number>
@@ -76,6 +76,7 @@
 <script>
 import Sku from '@/components/MySku.vue'
 import { GetDeta } from '@/aip/AllCategories'
+import { GetAddCart } from '@/aip/cart'
 export default {
   data () {
     return {
@@ -88,7 +89,9 @@ export default {
       // 商品文字详情
       properties: '',
       // 商品照片详情
-      pictures: ''
+      pictures: '',
+      // 选中的商品的的ID
+      SkuId: ''
     }
   },
   methods: {
@@ -120,7 +123,7 @@ export default {
       console.log(value)
     },
     // 加入购物车
-    AddCart () {
+    async AddCart () {
       // 没有登录在下面操作
       if (!localStorage.getItem('token')) {
         this.$notify({
@@ -131,12 +134,25 @@ export default {
         // 跳转登录页
         return this.$router.push('/login')
       } else {
-        console.log('加入成功')
+        if (this.SkuId) {
+          console.log(this.SkuId, this.num)
+          const res = await GetAddCart(this.SkuId, this.num)
+          console.log(res)
+          this.$message({
+            message: '加入成功',
+            type: 'success'
+          })
+        } else {
+          this.$message({
+            message: '请选择商品规格',
+            type: 'warning'
+          })
+        }
       }
     },
-    Cart (sum, name) {
-      this.isSelected = sum
-      this.isName = name
+    // 子元素传递的商品id
+    GetSkuId (data) {
+      this.SkuId = data[0].id
     }
   },
   created () {
