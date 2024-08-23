@@ -1,5 +1,5 @@
 <template>
-  <div class="Cart">
+  <div class="Cart" v-if="this.CartList">
     <div class="Cart_conten">
 
       <div class="title">
@@ -15,7 +15,7 @@
 
       <div class="Cart_list title" v-for="(item,index) in CartList" :key="index">
         <div class="checkbox">
-          <el-checkbox v-model="item.selected"  @change="Istrue()" ></el-checkbox>
+          <el-checkbox v-model="item.selected"  @change="Istrue()"  ></el-checkbox>
         </div>
         <div class="Information">
           <div class="imag">
@@ -32,7 +32,7 @@
           <el-input-number v-model="item.count"  :min="1" :max="10" style="width: 90%;" label=""></el-input-number>
         </div>
         <div class="common">{{'￥'+(item.nowPrice * item.count).toFixed(2)}}</div>
-        <div class="del">删除</div>
+        <div class="del" @click="del(item.skuId)"><a>删除</a></div>
       </div>
 
       <div class="Total">
@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { GetCart } from '@/aip/cart'
+import { GetCart, GetDel } from '@/aip/cart'
 export default {
   data () {
     return {
@@ -55,6 +55,11 @@ export default {
       conut: 0
     }
   },
+  created () {
+    // 调用购物车数据请求
+    this.GetCartList()
+  },
+
   methods: {
     // 获取购物车数据请求
     async  GetCartList () {
@@ -70,41 +75,35 @@ export default {
     },
     Istrue () {
       this.checked = this.isAllSelected
+    },
+    async del (skuId) {
+      const res = await GetDel([skuId])
+      console.log(res)
+      this.GetCartList()
     }
   },
-  created () {
-    // 调用购物车数据请求
-    this.GetCartList()
-  },
+
   computed: {
     isAllSelected () {
       return this.CartList.every(item => item.selected)
     },
     commodity () {
-      if (this.CartList) {
-        return this.CartList.reduce((prev, item) => {
-          return prev + item.count
-        }, 0)
-      } else {
-        // 如果CartList不是数组或为空，可以返回一个默认值，例如0
-        return 0
-      }
+      return this.CartList.reduce((prev, item) => {
+        return prev + item.count
+      }, 0)
     },
     price () {
-      if (this.CartList) {
-        return this.CartList.reduce((prev, item) => {
-          return prev + item.nowPrice * item.count
-        }, 0)
-      } else {
-        // 如果CartList不是数组或为空，可以返回一个默认值，例如0
-        return 0
-      }
+      const i = this.CartList.filter(item => item.selected === true)
+      return i.reduce((prev, item) => {
+        return prev + item.nowPrice * item.count
+      }, 0)
     },
     Selected () {
       // 将数据里面选中的数据筛选出来
-      const cunot = this.CartList.filter(item => item.selected === true)
-      // 筛选好的数据长度返回
-      return cunot.length
+      const i = this.CartList.filter(item => item.selected === true)
+      return i.reduce((prev, item) => {
+        return prev + item.count
+      }, 0)
     }
   }
 

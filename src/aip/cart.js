@@ -15,3 +15,13 @@ export function GetAddCart (skuId, count) {
     }
   })
 }
+
+export function GetDel (ids) {
+  return http({
+    url: '/member/cart',
+    method: 'DELETE',
+    data: {
+      ids
+    }
+  })
+}

@@ -208,11 +208,11 @@ export default {
   background: #fff;
   .header{
     .top{
-  width: 100%;
-  height: 50px;
-  border: 1px solid #333333;
-  background: #333333;
-  text-align: center;
+      width: 100%;
+      height: 50px;
+      border: 1px solid #333333;
+      background: #333333;
+      text-align: center;
   ul{
     width: 51%;
     text-align: right;
