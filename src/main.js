@@ -7,8 +7,11 @@ import '@/style/style.scss'
 import 'element-ui/lib/theme-chalk/index.css'
 
 import VueLazyload from 'vue-lazyload'
+import InfiniteScroll from 'vue-infinite-scroll'
 
 Vue.config.productionTip = false
+
+Vue.use(InfiniteScroll)
 
 Vue.use(VueLazyload, {
   preLoad: 1.3, // 预加载的宽高比

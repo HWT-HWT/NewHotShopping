@@ -1,7 +1,7 @@
-<template>
-  <div class="article" >
+<template  >
+  <div class="article"  >
     <div class="content">
-      <product :goods="AtHomeGoodsList.items"></product>
+      <product  :goods="AtHomeGoodsList.items"></product>
     </div>
   </div>
 </template>
@@ -12,7 +12,9 @@ import { GetAtHomeGoods } from '@/aip/AllCategories'
 export default {
   data () {
     return {
-      AtHomeGoodsList: ''
+      AtHomeGoodsList: '',
+      count: 1
+
     }
   },
   components: {
@@ -24,8 +26,8 @@ export default {
   methods: {
     // 发起请求:首页商品数据
     async GetAtHomeGoodsList () {
-      const res = await GetAtHomeGoods(this.$route.params.id, 1)
-      console.log(res)
+      const res = await GetAtHomeGoods(this.$route.params.id, this.count)
+
       this.AtHomeGoodsList = res
     }
 
@@ -44,6 +46,8 @@ export default {
     width: 50%;
     height: 100%;
     margin: 0 auto;
+    // border: 1px solid black;
   }
+
 }
 </style>

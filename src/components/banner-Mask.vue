@@ -10,7 +10,7 @@
             <span style="font-size: 20px;">分类推荐: </span>
             <span>根据你的购买记录浏览记录推荐</span>
           </div>
-          <div class="conten" v-for="item in recommend.goods" :key="item.id">
+          <div class="conten" v-for="item in recommend.goods" :key="item.id" @click="BtnMask(item.id)">
             <div class="contenAll">
               <div class="image" >
                 <img style="width: 100%;" v-lazy="item.picture" alt="">
@@ -60,6 +60,9 @@ export default {
     // 鼠标移出就将Mask改为false
     handleMouseleave () {
       this.Mask = false
+    },
+    BtnMask (id) {
+      this.$router.push(`/details/${id}`)
     }
   }
 

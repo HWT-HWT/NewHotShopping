@@ -1,9 +1,9 @@
 <template>
-  <div class="home">
+  <div class="home" v-if="homeList">
     <div class="banner">
       <div class="block">
         <el-carousel height="500px" >
-          <el-carousel-item v-for="item in bannerList" :key="item.id">
+          <el-carousel-item v-for="item in bannerList" :key="item.id" >
             <img style="width: 100%; height: 100%;" class="small" :src="item.imgUrl" alt="">
           </el-carousel-item>
         </el-carousel>
@@ -41,7 +41,7 @@
         新鲜出炉 品质靠谱
       </template>
       <template #commodity>
-        <commodity  v-for="item in NewList" :key="item.id">
+        <commodity  v-for="item in NewList" :key="item.id" >
           <template #image>
             <img style="width: 100%; height: 100%;" :src="item.picture" alt="">
           </template>

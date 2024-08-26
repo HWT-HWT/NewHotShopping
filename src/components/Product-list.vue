@@ -54,10 +54,12 @@ export default {
             width: 20%;
             margin-top: 10px;
             margin-bottom: 10px;
-            margin-left:5px;
+            margin-left:30px;
             transition: box-shadow 0.5s ease-in-out;
             background: #fff;
             padding: 10px;
+            // margin: 0 a;
+            // border: 1px solid black;
             .image{
               width: 70%;
               height: 60%;

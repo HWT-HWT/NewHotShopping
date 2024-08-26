@@ -29,7 +29,7 @@
         </div>
         <div class="price"> {{'￥'+item.nowPrice}}</div>
         <div class="quantity">
-          <el-input-number v-model="item.count"  :min="1" :max="10" style="width: 90%;" label=""></el-input-number>
+          <el-input-number v-model="item.count"  :min="1" :max="item.stock" style="width: 90%;" label=""></el-input-number>
         </div>
         <div class="common">{{'￥'+(item.nowPrice * item.count).toFixed(2)}}</div>
         <div class="del" @click="del(item.skuId)"><a>删除</a></div>

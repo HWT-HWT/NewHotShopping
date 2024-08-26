@@ -5,7 +5,7 @@
         <span style="font-size: 15px; color: #aaa5af;"><slot name="text">人气推荐 品质靠谱</slot></span>
       </div>
 
-      <div class="conten">
+      <div class="conten" >
         <slot name="commodity">
         </slot>
       </div>
@@ -15,7 +15,11 @@
 <script>
 
 export default {
-
+  methods: {
+    btn () {
+      console.log(123)
+    }
+  }
 }
 </script>
 

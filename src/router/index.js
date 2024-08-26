@@ -4,8 +4,6 @@ import Layout from '@/views/Layout/MyLayout.vue'
 
 Vue.use(VueRouter)
 
-// const category =
-
 const routes = [
   {
     path: '/',
@@ -43,7 +41,16 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      // 如果savedPosition存在（通常是在前进或后退时），则滚动到那个位置
+      return savedPosition
+    } else {
+      // 否则，滚动到页面顶部
+      return { x: 0, y: 0 }
+    }
+  }
 })
 
 export default router
