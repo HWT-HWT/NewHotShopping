@@ -93,6 +93,7 @@ export default {
           display: inline-block;
           text-align: center;
           align-content: center;
+          cursor: pointer;
         }
       }
     }

@@ -4,7 +4,7 @@
       <div class="Banner_DetaList">
         <div class="banner">
           <div class="maxBanner">
-            <img style="width: 100%; height: 100%;" :src="maxBanner" alt="">
+            <maxBanner :maxBanner=maxBanner></maxBanner>
           </div>
           <div class="minBanner">
             <div class="minImg" @click="MinImg(item)" v-for="item in DetaList.mainPictures" :key="item">
@@ -77,6 +77,7 @@
 import Sku from '@/components/MySku.vue'
 import { GetDeta } from '@/aip/AllCategories'
 import { GetAddCart } from '@/aip/cart'
+import maxBanner from '@/components/max-Banner.vue'
 export default {
   data () {
     return {
@@ -154,13 +155,15 @@ export default {
     GetSkuId (data) {
       this.SkuId = data[0].id
     }
+
   },
   created () {
     // 发起商品数据函数
     this.GetDetaList()
   },
   components: {
-    Sku
+    Sku,
+    maxBanner
   }
 }
 </script>
@@ -177,17 +180,16 @@ export default {
     .Banner_DetaList{
       width: 50%;
       height: 100%;
-
       margin-right:40px ;
       .banner{
         width: 100%;
         height: 80%;
-        // border: 1px solid red;
         display: flex;
         .maxBanner{
-          width: 82%;
-          height: 100%;
-          // border: 1px solid red;
+          width: 91%;
+          height: 91%;
+          // padding: 20px
+          // border: 1px solid black;
         }
         .minBanner{
           width: 18%;

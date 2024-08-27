@@ -127,7 +127,7 @@
             <div class="text">
               <div class="textTitle">
                 <ul>
-                  <li v-for="item in 5" :key="item"><a href="">帮助我们</a></li>
+                  <li v-for="item in 5" :key="item"><a>帮助我们</a></li>
                 </ul>
                 <p>CopyRigth@小兔鲜</p>
               </div>
@@ -258,6 +258,10 @@ export default {
         li{
           width: 10%;
           display: inline-block;
+
+        }
+        a{
+          cursor: pointer;
         }
         a:hover{
           color: #ccc;
@@ -357,6 +361,7 @@ export default {
             font-size: 15px;
             a{
               color: #ccc;
+              cursor: pointer;
             }
           }
         }

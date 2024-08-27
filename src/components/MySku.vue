@@ -86,6 +86,7 @@ export default {
     width: 100%;
     display: flex;
     align-items: center;
+
     .skutext{
       margin-right:10px;
       flex: 1;

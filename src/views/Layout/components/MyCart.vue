@@ -172,7 +172,7 @@ export default {
         .del{
           width: 10%;
           height: 100%;
-
+          cursor: pointer;
         }
       }
       .Cart_list{
