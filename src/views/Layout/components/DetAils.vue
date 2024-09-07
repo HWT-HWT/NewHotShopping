@@ -1,5 +1,5 @@
 <template>
-  <div class="details">
+  <div class="details" v-if="DetaList">
     <div class="details_conten">
       <div class="Banner_DetaList">
         <div class="banner">
@@ -8,7 +8,7 @@
           </div>
           <div class="minBanner">
             <div class="minImg" @click="MinImg(item)" v-for="item in DetaList.mainPictures" :key="item">
-              <img style="width: 100%; height: 100%; margin-bottom: 4px;" :src="item" alt="">
+              <img style="width: 100%; height: 100%; margin-bottom: 4px;" :src="item" v-if="item" alt="">
             </div>
           </div>
         </div>
@@ -188,11 +188,10 @@ export default {
         .maxBanner{
           width: 91%;
           height: 91%;
-          // padding: 20px
-          // border: 1px solid black;
+
         }
         .minBanner{
-          width: 18%;
+          width: 20%;
           height: 100%;
           .minImg{
             width:80%;

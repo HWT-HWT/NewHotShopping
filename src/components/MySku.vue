@@ -51,8 +51,8 @@ export default {
         })
         // 独自添加true 单独显示
         val.selected = true
-        // 先将筛选出商品选中 selected = true 的值
-        const i = this.sku.specs.map(item => item.values.filter(val => val.selected === true))
+        // 先将筛选出商品选中 selected = true 的值 再将清空数据为空的值
+        const i = this.sku.specs.map(item => item.values.filter(val => val.selected === true)).filter(item => item.length !== 0)
 
         // 创建筛选方法
         function GetSku (skus, specs) {
@@ -64,7 +64,9 @@ export default {
         }
         // 进入循环前就将清空数据
         this.specMap = ''
+
         // 筛选出的商品选中数组的长度进行循环遍历
+
         for (let index = 0; index <= i.length - 1; index++) {
           // 调用函数
           // this.specMap = 筛选过的数据
